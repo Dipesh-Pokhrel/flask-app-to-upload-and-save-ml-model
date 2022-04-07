@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+        <title> Application to upload and save Ml Models</title>
+    </head>
+    <body>
+            <h2> Upload the Machine Learining Model:</h2> <br>
+             <p>    
+                 {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                 {% for message in messages %}
+                    <div class="alert alert-primary">
+                        <strong>{{message}}</strong>
+                    </div>
+                 {% endfor %}
+                    {% endif %}
+                 {% endwith %}
+             </p>
+            <form action="/upload" method = "POST" enctype = "multipart/form-data">
+                <dl>
+                    <input type="file" name ="inputfile" autocomplete="off" required> <br>
+                </dl> 
+                    <label for="model_names"> Model Name:</label>
+                    <input type="text" name="model_names" value="" plcaeholder = "Name of Model" required> 
+                    <br>
+                    <label for="model_types"> Model Type:</label> 
+                    <input type="text" name="model_types" value="" plcaeholder = "Type of Model" required> 
+                    <br>
+                    <label for="engine_types"> Engine Type:</label>
+                    <select id="engine_types" name = "engine_types">
+                        <option>tf</option>
+                        <option>pt</option>
+                        <option>onnx</option>
+                        <option>others</option>
+                    </select>
+                    <br>
+                
+                
+                <input type="submit" name = "submit" value = "submit">
+        </form>
+    </body>
+</html>
+<style>
+    .alert-primary{
+        color: #004085;
+        background-color: #cce5ff;
+        border-color: #b8daff;
+    }
+.alert{
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    }
+
+</style>
